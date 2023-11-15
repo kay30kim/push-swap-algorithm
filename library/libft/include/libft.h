@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:15:00 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/12 16:35:55 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:52:30 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,21 @@
 # include <string.h>
 # include <stdio.h>
 
-typedef struct s_list
+# define BUFF_SIZE 4096
+
+typedef struct		s_list
 {
 	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_file
+{
+	int				fd;
+	char			buf[BUFF_SIZE + 1];
+	int				i;
+}					t_file;
 
 typedef long unsigned int	t_size_t;
 
@@ -31,8 +41,8 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *neww);
+void	ft_lstadd_front(t_list **lst, t_list *neww);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));

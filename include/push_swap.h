@@ -6,14 +6,13 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:47:12 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/15 15:47:45 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:52:22 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "common.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/types.h>

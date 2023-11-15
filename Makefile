@@ -6,14 +6,13 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/15 15:48:07 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/15 15:53:57 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
-
 NAME		=	push_swap
 
 #Colors
@@ -29,14 +28,13 @@ WHITE = \033[0;97m
 
 #Sources
 #SERVER_OBJS	=	$(SERVER_SRCS:.c=.o)
-#CLIENT_OBJS	=	$(CLIENT_SRCS:.c=.o)
-#SER_BON_OBJS=	$(SER_BON_SRCS:.c=.o)
-#CLI_BON_OBJS=	$(CLI_BON_SRCS:.c=.o)
 
+#Library
 LIBFT		=	./library/libft
 LIBPF		=	./library/ft_printf
 LIBS		=	$(LIBFT)/libft.a $(LIBPF)/libftprintf.a
 HEADERS		=	-I$(LIBFT)/include -I$(LIBPF) -Iinclude
+
 ###
 all : libft libpf $(NAME)
 
@@ -49,8 +47,7 @@ libpf :
 %.o: %.c
 	${CC} ${CFLAGS} -o $@ -c $< ${HEADERS}
 
-$(NAME) :
-	
+$(NAME) :	
 
 clean :
 # rm -rf $(SERVER_OBJS) $(CLIENT_OBJS)
