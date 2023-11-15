@@ -6,7 +6,7 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/15 15:09:17 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/15 15:48:07 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ WHITE = \033[0;97m
 LIBFT		=	./library/libft
 LIBPF		=	./library/ft_printf
 LIBS		=	$(LIBFT)/libft.a $(LIBPF)/libftprintf.a
-HEADERS		=	-I$(LIBFT)/include -I$(LIBPF)
+HEADERS		=	-I$(LIBFT)/include -I$(LIBPF) -Iinclude
 ###
 all : libft libpf $(NAME)
 
