@@ -6,7 +6,7 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/15 15:53:57 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/15 15:54:44 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 #Sources
-#SERVER_OBJS	=	$(SERVER_SRCS:.c=.o)
+#SERVER_OBJS	=	$(SERVER_SRCS:.c=.o) ㅎㅐ야할거
 
 #Library
 LIBFT		=	./library/libft
@@ -50,12 +50,12 @@ libpf :
 $(NAME) :	
 
 clean :
-# rm -rf $(SERVER_OBJS) $(CLIENT_OBJS)
+# rm -rf $(SERVER_OBJS) $(CLIENT_OBJS) 해해야할거
 	$(MAKE) -C $(LIBFT) clean
 	$(MAKE) -C $(LIBPF) clean
 
 fclean : clean
-#	rm -rf $(SERVER) $(CLIENT)
+#	rm -rf $(SERVER) $(CLIENT) 해해야할거
 	$(MAKE) -C $(LIBFT) fclean
 	$(MAKE) -C $(LIBPF) fclean
 
