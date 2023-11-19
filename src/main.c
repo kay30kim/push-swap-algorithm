@@ -6,106 +6,75 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:46:03 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/16 15:57:14 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:24:35 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
-void	ft_sort_three(t_node *deque_a)
+void	free_all(t_deque *a, t_list *cmnd)
 {
-	if (deque_a->val > deque_a->next->val)
+	t_lst *tmp;
+	t_list	*tmp_a;
+
+	while (a->head)
 	{
-		if (deque_a->val < deque_a->next->next->val)
-			execute(&deque_a, NULL, "sa", 0);
-		else if (deque_a->next->val > deque_a->next->next->val)
-		{
-			execute(&deque_a, NULL, "sa", 0);
-			execute(&deque_a, NULL, "rra", 0);
-		}
-		else
-			execute(&deque_a, NULL, "ra", 0);
+		tmp = a->head;
+		a->head = a->head->next;
+		free(tmp);
 	}
-	else if (deque_a->val < deque_a->next->val)
+	while (cmnd)
 	{
-		if (deque_a->val > deque_a->next->next->val)
-			execute(&deque_a, NULL, "rra", 0);
-		else if (deque_a->next->val > deque_a->next->next->val)
-		{
-			execute(&deque_a, NULL, "sa", 0);
-			execute(&deque_a, NULL, "ra", 0);
-		}
+		tmp_a = cmnd;
+		free(cmnd->content);
+		cmnd = cmnd->next;
+		free(tmp_a);
 	}
+	free(a->p);
 }
 
-void	ft_quicksort(t_node *deque_a, t_node *deque_b)
-{
-	int	i;
-	int	pos[2];
-	int	mode;
-
-	multi_execute(&deque_a, &deque_b, "pb", 2);
-	while (stack_len(deque_a) > 3)
-	{
-		pos[0] = find_min_index(deque_a, deque_b, stack_len(deque_a));
-		i = -1;
-		while (++i < pos[0])
-			deque_a = deque_a->next;
-		pos[1] = execute_calc(deque_a, deque_b, stack_len(deque_a), true);
-		mode = lcm(pos, stack_len(deque_a), stack_len(deque_b), true);
-		if (mode == 1)
-			reverse_pos(&deque_a, &deque_b, pos);
-		execute_ps(&deque_a, &deque_b, pos, mode);
-		execute(&deque_a, &deque_b, "pb", false);
-	}
-	sort_three(deque_a);
-	while (stack_len(deque_b) > 0)
-	{
-		target_push(deque_a, find_target(deque_b, deque_a));
-		execute(&deque_a, &deque_b, "pa", false);
-	}
-	min_max_push(deque_a, false);
-}
-
-
-void	push_swap(t_node *deque_a, t_node *deque_b, int len)
-{
-	if (ft_lst_is_sorted(deque_a, 0))
-		return ;
-	if (len == 2)
-		ft_execute(&deque_a, &deque_b, "sa", 0);
-	else if (len == 3)
-		ft_sort_three(deque_a);
-	else
-		ft_quicksort(deque_a, deque_b);
-}
-
-int	main(int argc, char **argv)
+void	make_deque(t_deque *deque_a, t_deque *deque_b, char **av, int ac)
 {
 	int		i;
-	t_node	*deque_a;
-	t_node	*deque_b;
 
-	i = 0;
-	deque_a = NULL;
-	deque_b = NULL;
-	if (argc == 2)
+	i = 1;
+	if (ac == 2)
+		i = 0;
+	if (!is_digit(ac, av) || !(deque_a->head = malloc(sizeof(t_lst))) || is_duplicated(av, i))
+		error_exit();
+	deque_a->head->num = ft_atoi(av[i++]);
+	deque_a->head->prev = NULL;
+	deque_a->end = deque_a->head;
+	while (av[i++])
+		lst_addback(av[i++], &deque_a->end);
+	deque_b->head = NULL;
+	deque_b->end = NULL;
+}
+
+int		main(int ac, char **av)
+{
+	t_deque	deque_a;
+	t_deque	deque_b;
+	t_list	*cmnd;
+
+	if (ac == 2)
+		av = ft_split(av[1], ' ');
+	make_deque(&deque_a, &deque_b, av, ac);
+	if (!(deque_a.p = malloc(sizeof(t_lst*) * ac)) ||
+	!(deque_b.p = malloc(sizeof(t_lst*) * ac)))
+		exit(1);
+	deque_a.ac = ac;
+	deque_b.ac = ac;
+	deque_a.top = 0;
+	deque_b.top = 0;
+	deque_a.p[deque_a.top] = NULL;
+	deque_b.p[deque_a.top] = NULL;
+	cmnd = quick_sort(&deque_a, &deque_b);
+	while (cmnd != NULL)
 	{
-		argv = ft_split(argv[1], ' ');
-		i = -1;
+		ft_putstr_fd((char *)cmnd->content, 1);
+		cmnd = cmnd->next;
 	}
-	if (argc > 1)
-	{
-		while (argv[++i])
-		{
-			if (ft_is_valid(deque_a, argv[i]) == 0)
-				ft_free_stop(deque_a, ERROR_MSG_INPUT);
-			deque_a = add_node(deque_a, ft_atoi(argv[i]));
-		}
-		push_swap(deque_a, deque_b, ft_lst_size(deque_a));
-		ft_lst_clear(deque_a);
-		ft_lst_clear(deque_b);
-	}
-	return (0);
+	free(deque_b.p);
+	free_all(&deque_a, cmnd);
 }

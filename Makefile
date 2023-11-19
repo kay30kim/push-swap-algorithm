@@ -6,7 +6,7 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/15 15:54:44 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/19 15:54:35 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 #Sources
-#SERVER_OBJS	=	$(SERVER_SRCS:.c=.o) ㅎㅐ야할거
+SRCS	=	src/a_functions.c src/b_functions.c src/commands.c src/get_median.c src/list.c src/main.c src/quick_sort.c src/utils.c
+OBJS	=	$(SRCS:.c=.o)
 
 #Library
 LIBFT		=	./library/libft
@@ -47,15 +48,16 @@ libpf :
 %.o: %.c
 	${CC} ${CFLAGS} -o $@ -c $< ${HEADERS}
 
-$(NAME) :	
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(HEADERS) $(OBJS) $(LIBS) -o $(NAME)
 
 clean :
-# rm -rf $(SERVER_OBJS) $(CLIENT_OBJS) 해해야할거
+	rm -rf $(OBJS)
 	$(MAKE) -C $(LIBFT) clean
 	$(MAKE) -C $(LIBPF) clean
 
 fclean : clean
-#	rm -rf $(SERVER) $(CLIENT) 해해야할거
+	rm -rf $(NAME)
 	$(MAKE) -C $(LIBFT) fclean
 	$(MAKE) -C $(LIBPF) fclean
 
