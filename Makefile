@@ -6,13 +6,13 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/19 15:54:35 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/24 18:38:58 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -g
 NAME		=	push_swap
 
 #Colors
@@ -27,7 +27,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 #Sources
-SRCS	=	src/a_functions.c src/b_functions.c src/commands.c src/get_median.c src/list.c src/main.c src/quick_sort.c src/utils.c
+SRCS	=	src/instruction.c src/list.c src/main.c src/utils.c src/quicksort.c src/mergesort.c
 OBJS	=	$(SRCS:.c=.o)
 
 #Library
@@ -49,7 +49,7 @@ libpf :
 	${CC} ${CFLAGS} -o $@ -c $< ${HEADERS}
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(HEADERS) $(OBJS) $(LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean :
 	rm -rf $(OBJS)

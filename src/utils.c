@@ -6,73 +6,59 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:57:30 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/19 17:40:52 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:14:17 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_exit(void)
+void	ft_free_stop(t_node *deque_a, char *msg)
 {
-	ft_putstr_fd("error\n", 2);
-	exit(1);
+	ft_lst_clear(deque_a);
+	ft_printf("%s\n", msg);
+	exit(EXIT_FAILURE);
 }
 
-int		is_digit(int ac, char **av)
+int	ft_atoi_exhandler(char *str, t_node *deque_a)
 {
-	int i;
-	int	j;
+	long long	res;
+	long long	sign;
 
-	i = 1;
-	while (i < ac)
+	res = 0;
+	sign = 1;
+	while (*str && ((9 <= *str && *str <= 13) || *str == 32))
+		str++;
+	if (*str == '-')
+		sign *= -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	if (!*str)
+		ft_free_stop(deque_a, ERROR_MSG_INPUT);
+	while (*str)
 	{
-		j = 0;
-		if (av[i][j] == '-')
-			j++;
-		if (!ft_isdigit(av[i][j]))
+		if (!ft_isdigit(*str))
+			ft_free_stop(deque_a, ERROR_MSG_INPUT);
+		res = (res * 10) + (*str - '0');
+		str++;
+	}
+	res = res * sign;
+	if ((res) > INT_MAX || (res) < INT_MIN)
+		ft_free_stop(deque_a, ERROR_MSG_INPUT);
+	return (res);
+}
+
+int	ft_argu_check(t_node *deque_a, char *str)
+{
+	t_node	*tmp;
+	int		nbr;
+
+	tmp = deque_a;
+	nbr = ft_atoi_exhandler(str, deque_a);
+	while (tmp)
+	{
+		if (tmp->val == nbr)
 			return (0);
-		while (ft_isdigit(av[i][j]))
-			j++;
-		if (av[i][j])
-			return (0);
-		i++;
+		tmp = tmp->next;
 	}
 	return (1);
-}
-
-int		is_duplicated(char **av, int i)
-{
-	int		j;
-
-	while (av[i])
-	{
-		j = i + 1;
-		while (av[j])
-		{
-			if (av[i] == av[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-char	ft_strcat(char *dst, const char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (dst[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-	{
-		dst[i] = src[j];
-		i++;
-		j++;
-	}
-	dst[i] = '\0';
-	return (*dst);
 }
