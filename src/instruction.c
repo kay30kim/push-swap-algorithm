@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:13:04 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/24 15:55:02 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:05:10 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_swap(t_node **deque)
 	t_node	*tmp;
 
 	if (deque == NULL || *deque == NULL || (*deque)->next == NULL)
-		return (1);
+		return (-1);
 	tmp = (*deque)->next;
 	(*deque)->next = tmp->next;
 	if (tmp->next != NULL)
@@ -26,7 +26,7 @@ int	ft_swap(t_node **deque)
 	tmp->prev = NULL;
 	(*deque)->prev = tmp;
 	*deque = tmp;
-	return (1);
+	return (0);
 }
 
 int	ft_push(t_node **deque_from, t_node **deque_to)
@@ -34,7 +34,7 @@ int	ft_push(t_node **deque_from, t_node **deque_to)
 	t_node	*tmp;
 
 	if (deque_from == NULL || *deque_from == NULL)
-		return (1);
+		return (-1);
 	tmp = (*deque_from)->next;
 	if (tmp != NULL)
 		tmp->prev = NULL;
@@ -43,17 +43,18 @@ int	ft_push(t_node **deque_from, t_node **deque_to)
 		(*deque_to)->prev = *deque_from;
 	*deque_to = *deque_from;
 	*deque_from = tmp;
-	return (1);
+	return (0);
 }
 
+// down = 0, up =  1
 int	ft_rotate(t_node **deque, int reverse)
 {
 	t_node	*tmp;
 
 	if (deque == NULL || *deque == NULL || (*deque)->next == NULL)
-		return (1);
+		return (-1);
 	tmp = *deque;
-	if (reverse == 0) // down
+	if (reverse == 0)
 	{
 		*deque = (*deque)->next;
 		(*deque)->prev = NULL;
@@ -61,7 +62,7 @@ int	ft_rotate(t_node **deque, int reverse)
 		tmp->prev = ft_last_node(*deque);
 		ft_last_node(*deque)->next = tmp;
 	}
-	else // up
+	else
 	{
 		*deque = ft_last_node(*deque);
 		(*deque)->prev->next = NULL;
@@ -69,10 +70,11 @@ int	ft_rotate(t_node **deque, int reverse)
 		(*deque)->next = tmp;
 		tmp->prev = *deque;
 	}
-	return (1);
+	return (0);
 }
 
-int	ft_do_instruction(t_node **deque_a, t_node **deque_b, char *intstruction, int is_print)
+int	ft_do_instruction(t_node **deque_a, t_node **deque_b,
+	char *intstruction, int is_print)
 {
 	if (!is_print)
 		ft_printf("%s\n", intstruction);
@@ -98,15 +100,16 @@ int	ft_do_instruction(t_node **deque_a, t_node **deque_b, char *intstruction, in
 		return (ft_rotate(deque_b, 1));
 	else if (strcmp(intstruction, "rrr") == 0)
 		return (ft_rotate(deque_a, 1) && ft_rotate(deque_b, 1));
-	return (0);
+	return (-1);
 }
 
-int	ft_do_multi_instruction(t_node **deque_a, t_node **deque_b, char *intstruction, int num)
+int	ft_do_multi_instruction(t_node **deque_a, t_node **deque_b,
+	char *intstruction, int num)
 {
 	while (num--)
 	{
-		if (!ft_do_instruction(deque_a, deque_b, intstruction, 0))
-			return (0);
+		if (ft_do_instruction(deque_a, deque_b, intstruction, 0) == -1)
+			return (-1);
 	}
-	return (1);
+	return (0);
 }

@@ -6,13 +6,13 @@
 #    By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 21:13:41 by kyung-ki          #+#    #+#              #
-#    Updated: 2023/11/24 18:38:58 by kyung-ki         ###   ########.fr        #
+#    Updated: 2023/11/25 17:05:44 by kyung-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra -g #-fsanitize=address
 NAME		=	push_swap
 
 #Colors
@@ -27,7 +27,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 #Sources
-SRCS	=	src/instruction.c src/list.c src/main.c src/utils.c src/quicksort.c src/mergesort.c
+SRCS	=	src/instruction.c src/list.c src/main.c src/utils.c src/quicksort.c src/mergesort.c src/quicksort2.c
 OBJS	=	$(SRCS:.c=.o)
 
 #Library

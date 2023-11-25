@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:15:00 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/15 15:52:30 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:58:56 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 
 # define BUFF_SIZE 4096
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_file
+typedef struct s_file
 {
 	int				fd;
 	char			buf[BUFF_SIZE + 1];

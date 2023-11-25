@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:49:01 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/24 16:34:52 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:00:21 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,10 @@
 */
 #include "push_swap.h"
 
-int	ft_lst_is_sorted(t_node *deque, int reverse)
-{
-	t_node	*tmp;
-
-	tmp = deque;
-	if (ft_lst_size(deque) == 0 || !deque)
-		return (0);
-	while (tmp->next)
-	{
-		if (tmp->val > tmp->next->val && reverse == 0)
-			return (0);
-		if (tmp->val < tmp->next->val && reverse == 1)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
 void	ft_lst_clear(t_node *node)
 {
 	t_node	*tmp;
+
 	if (!node)
 		return ;
 	while (node)

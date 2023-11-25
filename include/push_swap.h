@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:47:12 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/24 18:38:08 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:18:26 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,18 @@ t_node	*ft_lst_add_top_front(t_node *node, int val);
 t_node	*ft_last_node(t_node *node);
 
 // Sort functions
-void	ft_sort_three_a(t_node *deque_a);
-void	ft_sort_three_b(t_node *deque_a, t_node *deque_b);
+void	ft_sort_three_a(t_node **deque_a);
+void	ft_sort_three_b(t_node **deque_a, t_node **deque_b);
 void	ft_sort(t_node *deque_a, t_node *deque_b);
 void	push_swap(t_node *deque_a, t_node *deque_b, int len);
-int		ft_quicksort_a(t_node *deque_a, t_node *deque_b, int len);
-int		ft_quicksort_b(t_node *deque_a, t_node *deque_b, int len);
+int		ft_quicksort_a(t_node **deque_a, t_node **deque_b, int len);
+int		ft_quicksort_b(t_node **deque_a, t_node **deque_b, int len);
 int		get_pivot(int *pivot, t_node *deque_a, int len);
 void	ft_mergesort(int start, int finish, int *cache, int *buf);
+void	ft_helper_a(t_node **deque_a, t_node **deque_b);
+void	ft_helper_a2(t_node **deque_a, t_node **deque_b);
+void	ft_helper_b(t_node **deque_a, t_node **deque_b);
+void	ft_helper_b2(t_node **deque_a, t_node **deque_b);
 
 // Generic Utilities
 void	ft_free_stop(t_node *deque_a, char *msg);

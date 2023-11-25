@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:57:30 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/21 13:14:17 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:02:03 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ int	ft_argu_check(t_node *deque_a, char *str)
 	while (tmp)
 	{
 		if (tmp->val == nbr)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int	ft_lst_is_sorted(t_node *deque, int reverse)
+{
+	t_node	*tmp;
+
+	tmp = deque;
+	if (ft_lst_size(deque) == 0 || !deque)
+		return (0);
+	while (tmp->next)
+	{
+		if (tmp->val > tmp->next->val && reverse == 0)
+			return (0);
+		if (tmp->val < tmp->next->val && reverse == 1)
 			return (0);
 		tmp = tmp->next;
 	}

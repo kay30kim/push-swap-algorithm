@@ -6,7 +6,7 @@
 /*   By: kyung-ki <kyung-ki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:47:55 by kyung-ki          #+#    #+#             */
-/*   Updated: 2023/11/24 16:21:08 by kyung-ki         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:03:00 by kyung-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_intcpy(int *dst, int *src, int start, int finish)
 {
 	if (!dst || !src)
 		return ;
-
 	while (start <= finish)
 	{
 		dst[start] = src[start];
@@ -47,17 +46,16 @@ void	ft_intcpy(int *dst, int *src, int start, int finish)
 void	ft_mergesort(int start, int finish, int *cache, int *buf)
 {
 	int	mid;
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	if (start >= finish)
 		return ;
-	ft_mergesort_init1(start,finish, &i, &j);
-	ft_mergesort_init2(start,finish, &mid, &k);
+	ft_mergesort_init1(start, finish, &i, &j);
+	ft_mergesort_init2(start, finish, &mid, &k);
 	ft_mergesort(start, mid, cache, buf);
 	ft_mergesort(mid + 1, finish, cache, buf);
-
 	while (i <= mid && j <= finish)
 	{
 		if (cache[i] < cache[j])
