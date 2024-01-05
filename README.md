@@ -7,13 +7,9 @@ The "push_swap" program is a sorting algorithm implementation that takes a stack
 </br></br>
 
 ## Challenge
+Sort a random list of integers using the smallest number of moves, 2 deques and a limited set of operations. <br />
 
-Sort a random list of integers using the smallest number of moves, 2 stacks
-and a limited set of operations. <br />
-<br />
-
-You start with two empty stacks: **a** and **b**. You are given a random list of integers via command line arguments.
-<br />
+You start with two empty deques: **a** and **b**. You are given a random list of integers via command line arguments.
 <br />
 
 Only these moves are allowed:
@@ -34,17 +30,15 @@ the last one.
 <br />
 
 At the end, **stack b** must empty empty and all integers must be in **stack a**, sorted in ascending order. <br />
-<br />
 
 ## The Project
 Create two programs: ```checker``` and ```push_swap```. <br />
 
 The ```checker``` program reads a random list of integers from the stdin, stores them, and checks to see
 if they are sorted. <br />
-<br />
 The ```push_swap``` program calculates the moves to sort the integers – *pushing, popping, swapping* and *rotating* 
 them between **stack a** and **stack b** – and displays those directions on the stdout. <br />
-<br />
+
 You can pipe ```push_swap``` into ```checker```, and ```checker``` will verify that ```push_swap```'s instructions were successful. 
 <br />
 
