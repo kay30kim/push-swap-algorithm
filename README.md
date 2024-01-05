@@ -51,7 +51,7 @@ You can pipe ```push_swap``` into ```checker```, and ```checker``` will verify t
 Both programs must mandatorily parse input for errors, including empty strings, no parameters, 
 non-numeric parameters, duplicates, and invalid/non-existent instructions.
 
-**Push_Swap** must conform to the [42 Norm](https://cdn.intra.42.fr/pdf/pdf/960/norme.en.pdf). <br />
+**Push_Swap** must conform to the [42 Norm](). <br />
 Using normal ```libc``` functions is strictly forbidden. Students are however, allowed to use: ```write```, ```read```, ```malloc```, ```free```, ```exit```. 
 It must not have any memory leaks. Errors must be handled carefully. <br />
 In no way can it quit in an unexpected manner (segmentation fault, bus error, double free, etc).
