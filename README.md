@@ -4,7 +4,7 @@
 The "push_swap" program is a sorting algorithm implementation that takes a stack of integers as input and outputs the smallest list of instructions required to sort the stack. The primary goal is to have the smallest number at the top of the stack. The program uses quicksort with two deques, separating elements based on a pivot value. Additionally, mergesort is employed to determine the pivot.
 
 
-</br></br>
+</br>
 
 ## Challenge
 Sort a random list of integers using the smallest number of moves, 2 deques and a limited set of operations. <br />
@@ -27,9 +27,8 @@ the last one.
 - `rra` : reverse rotate a - shift down all elements of stack a by 1. The last element becomes the first one.
 - `rrb` : reverse rotate b - shift down all elements of stack b by 1. The last element becomes the first one.
 - `rrr` : `rra` and `rrb` at the same time.
-<br />
 
-At the end, **stack b** must empty empty and all integers must be in **stack a**, sorted in ascending order. <br />
+At the end, **deque b** must empty empty and all integers must be in **deque a**, sorted in ascending order. <br />
 
 ## The Project
 Create two programs: ```checker``` and ```push_swap```. <br />
